@@ -4,6 +4,7 @@ import com.somawiki.somawiki.review.domain.Review;
 import com.somawiki.somawiki.user.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -15,7 +16,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-@AllArgsConstructor
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Comment {
     @Id
@@ -44,7 +45,4 @@ public class Comment {
     @LastModifiedDate
     private Date lastModifiedDate;
 
-    public Comment(){
-
-    }
 }

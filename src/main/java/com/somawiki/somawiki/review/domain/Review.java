@@ -3,8 +3,8 @@ package com.somawiki.somawiki.review.domain;
 import com.somawiki.somawiki.comment.domain.Comment;
 import com.somawiki.somawiki.mentor.domain.Mentor;
 import com.somawiki.somawiki.user.domain.User;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Review {
     @Id
@@ -63,7 +63,4 @@ public class Review {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "comment", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
-    public Review() {
-
-    }
 }

@@ -2,10 +2,7 @@ package com.somawiki.somawiki.user.domain;
 
 import com.somawiki.somawiki.comment.domain.Comment;
 import com.somawiki.somawiki.review.domain.Review;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,9 +11,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Builder
 @Table(name="User")
-@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +39,4 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userComments", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
-    public User() {
-    }
 }
