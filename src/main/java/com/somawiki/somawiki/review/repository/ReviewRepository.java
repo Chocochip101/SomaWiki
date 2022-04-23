@@ -1,4 +1,7 @@
 package com.somawiki.somawiki.review.repository;
 
-public class ReviewRepository {
+import com.somawiki.somawiki.review.domain.Review;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReviewRepository extends JpaRepository<Review, Long> {
 }
