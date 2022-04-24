@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@Table(name="Mentor")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Mentor {

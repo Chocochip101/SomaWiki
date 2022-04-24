@@ -13,6 +13,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
+@Table(name="Comment")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

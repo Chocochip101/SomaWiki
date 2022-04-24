@@ -17,6 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@Table(name="Review")
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
@@ -35,7 +36,7 @@ public class Review {
     // 멘토
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "")
+    @JoinColumn(name = "reviews")
     private Mentor mentor;
 
     // 제목
