@@ -3,9 +3,7 @@ package com.somawiki.somawiki.review.domain;
 import com.somawiki.somawiki.comment.domain.Comment;
 import com.somawiki.somawiki.mentor.domain.Mentor;
 import com.somawiki.somawiki.user.domain.User;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -18,6 +16,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Review {
@@ -27,16 +27,19 @@ public class Review {
     private Long idx;
 
     // 연수생
+    @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userReviews")
     private User user;
 
     // 멘토
+    @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "")
     private Mentor mentor;
 
     // 제목
+    @NonNull
     @Column(name="title")
     private String title;
 
@@ -56,6 +59,7 @@ public class Review {
     private Date lastModifiedDate;
 
     // 조회수
+    @NonNull
     @Column(name="views")
     private Long views;
 

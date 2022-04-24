@@ -1,10 +1,7 @@
 package com.somawiki.somawiki.mentor.domain;
 
 import com.somawiki.somawiki.review.domain.Review;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +10,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Mentor {
     @Id
@@ -21,6 +20,7 @@ public class Mentor {
     private Long idx;
 
     // 이름
+    @NonNull
     @Column(name="name")
     private String name;
 
