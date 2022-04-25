@@ -14,7 +14,6 @@ import java.util.Date;
 @Getter
 @Entity
 @Table(name="Comment")
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)

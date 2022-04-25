@@ -16,7 +16,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Builder
 @Table(name="Review")
 @AllArgsConstructor
 @NoArgsConstructor
