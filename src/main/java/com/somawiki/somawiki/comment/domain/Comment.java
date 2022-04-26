@@ -8,43 +8,37 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-@Setter
 @Getter
-@Entity
-@Table(name="Comment")
-@AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@Entity
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idx")
+    @Column
     private Long idx;
 
-    // 연수생
-    @NonNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userComments")
+    // 내용
+    @Column(nullable = false)
+    private String content;
+
+    // 댓글 작성자
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
 
-    // 후기
-    @NonNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "comment")
+    // 댓글이 달린 후기
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "REVIEW_ID", nullable = false)
     private Review review;
-
-    // 내용
-    @NonNull
-    @Column(name="content")
-    private String content;
 
     // 날짜
     @CreatedDate
-    private Date createdDate;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
-    private Date lastModifiedDate;
+    private LocalDateTime lastModifiedDate;
 
 }
