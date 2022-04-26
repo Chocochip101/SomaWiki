@@ -7,25 +7,20 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Getter
-@Setter
-@Table(name="Mentor")
-@AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Mentor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idx")
+    @Column
     private Long idx;
 
     // 이름
-    @NonNull
-    @Column(name="name")
+    @Column(nullable = false)
     private String name;
 
     // 후기
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviews", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "mentor")
     private List<Review> reviews = new ArrayList<>();
-
 }

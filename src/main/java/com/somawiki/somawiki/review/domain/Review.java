@@ -9,62 +9,55 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-@Entity
 @Getter
-@Setter
-@Table(name="Review")
-@AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@Entity
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idx")
+    @Column
     private Long idx;
 
-    // 연수생
-    @NonNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userReviews")
-    private User user;
-
-    // 멘토
-    @NonNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reviews")
-    private Mentor mentor;
-
     // 제목
-    @NonNull
-    @Column(name="title")
+    @Column(nullable = false)
     private String title;
 
     // 링크
-    @Column(name="link")
+    @Column(nullable = false)
     private String link;
 
     // 요약
-    @Column(name="summary")
+    @Column(nullable = false)
     private String summary;
+
+    // 조회수
+    @Column(nullable = false)
+    private Long views;
 
     // 날짜
     @CreatedDate
-    private Date createdDate;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
-    private Date lastModifiedDate;
+    private LocalDateTime lastModifiedDate;
 
-    // 조회수
-    @NonNull
-    @Column(name="views")
-    private Long views;
+    // 후기 작성자
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private User user;
+
+    // 멘토
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "MENTOR_ID", nullable = false)
+    private Mentor mentor;
 
     // 댓글
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "comment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "review")
     private List<Comment> comments = new ArrayList<>();
 
 }
