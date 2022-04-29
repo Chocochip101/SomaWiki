@@ -57,7 +57,7 @@ public class Review {
     private Mentor mentor;
 
     // 댓글
-    @OneToMany(mappedBy = "review")
+    @OneToMany(mappedBy = "review", orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
 }
