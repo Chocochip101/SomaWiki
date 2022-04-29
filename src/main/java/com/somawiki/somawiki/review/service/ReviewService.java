@@ -92,4 +92,17 @@ public class ReviewService {
     return true;
   }
 
+  @Transactional
+  public boolean deleteReview(long reviewId, LoginResponseDto loginUser) {
+    Optional<Review> review = reviewRepository.findById(reviewId);
+
+    if (review.isEmpty() || review.get().getUser().getIdx() != loginUser.getIdx()) {
+      return false;
+    }
+
+    reviewRepository.delete(review.get());
+
+    return true;
+  }
+
 }
