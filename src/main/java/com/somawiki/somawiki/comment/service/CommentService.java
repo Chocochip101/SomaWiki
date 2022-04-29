@@ -8,6 +8,7 @@ import com.somawiki.somawiki.review.repository.ReviewRepository;
 import com.somawiki.somawiki.user.domain.User;
 import com.somawiki.somawiki.user.exception.LoginException;
 import com.somawiki.somawiki.user.repository.UserRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,18 +29,21 @@ public class CommentService {
         User user = userRepository.findByIdx(UserIdx);
         Review review = reviewRepository.findById(reviewIdx).orElseThrow(()->
              new IllegalArgumentException("댓글 쓰기 실패했습니다."));
+        Comment comment = new Comment(commentRequestDto.getText(), user, review);
 
-        commentRequestDto.setUser(user);
-        commentRequestDto.setReview(review);
-
-        Comment comment = commentRequestDto.toEntity();
         commentRepository.save(comment);
 
         return true;
     }
-    public boolean deleteComment(Long UserIdx, Long reviewIdx, Long commentIdx){
+
+    public boolean deleteComment(Long userIdx, Long commentIdx) throws Exception {
         Comment comment = commentRepository.findById(commentIdx).orElseThrow(()->
                 new IllegalArgumentException("해당 댓글이 존재하지 않습니다."));
+        User user = userRepository.findById(userIdx).get();
+
+        if (user.getIdx() != comment.getUser().getIdx()) {
+            throw new Exception("해당 댓글에 대한 작성자가 아닙니다.");
+        }
 
         commentRepository.delete(comment);
         return true;

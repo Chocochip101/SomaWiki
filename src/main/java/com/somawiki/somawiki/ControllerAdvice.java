@@ -28,4 +28,10 @@ public class ControllerAdvice {
   public ErrorResponse failToGetReview(WrongReviewException e) {
     return new ErrorResponse(HttpStatus.BAD_REQUEST, e.getMessage());
   }
+
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(Exception.class)
+  public ErrorResponse general(Exception e) {
+    return new ErrorResponse(HttpStatus.BAD_REQUEST, e.getMessage());
+  }
 }

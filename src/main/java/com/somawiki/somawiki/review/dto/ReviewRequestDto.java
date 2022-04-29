@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 public class ReviewRequestDto {
   @NotEmpty
   private String title;
-  @NotEmpty
+  @NotNull
   private long mentor;
   @NotEmpty
   private String link;

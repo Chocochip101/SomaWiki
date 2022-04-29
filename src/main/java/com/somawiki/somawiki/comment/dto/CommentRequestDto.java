@@ -5,24 +5,13 @@ import com.somawiki.somawiki.review.domain.Review;
 import com.somawiki.somawiki.user.domain.User;
 import lombok.*;
 
+import javax.validation.constraints.NotEmpty;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentRequestDto {
-    private Long idx;
+    @NotEmpty
     private String text;
-
-    private User user;
-    private Review review;
-
-    public Comment toEntity(){
-        Comment comments = Comment.builder()
-                .idx(idx)
-                .content(text)
-                .user(user)
-                .review(review)
-                .build();
-        return comments;
-    }
 }

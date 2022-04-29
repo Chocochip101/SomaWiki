@@ -3,6 +3,7 @@ package com.somawiki.somawiki.comment.domain;
 import com.somawiki.somawiki.comment.dto.CommentRequestDto;
 import com.somawiki.somawiki.comment.dto.CommentResponseDto;
 import com.somawiki.somawiki.review.domain.Review;
+import com.somawiki.somawiki.time.BaseTimeEntity;
 import com.somawiki.somawiki.user.domain.User;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,12 +14,10 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Comment {
+public class Comment extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -38,11 +37,10 @@ public class Comment {
     @JoinColumn(name = "REVIEW_ID", nullable = false)
     private Review review;
 
-    // 날짜
-    @CreatedDate
-    private LocalDateTime createdDate;
-
-    @LastModifiedDate
-    private LocalDateTime lastModifiedDate;
+    public Comment(String content, User user, Review review) {
+        this.content = content;
+        this.user = user;
+        this.review = review;
+    }
 
 }
