@@ -29,5 +29,22 @@ public class ReviewJpqlRepository {
     return resultList;
   }
 
+  /**
+   *
+   * @param size 출력할 item 개수
+   * @return
+   */
+  public List<Review> findAllOrderByViewsDesc(int size) {
+    String jpql = "select r from Review r " +
+      "order by r.views desc";
+
+    List<Review> resultList = em.createQuery(jpql, Review.class)
+      .setFirstResult(0)
+      .setMaxResults(size)
+      .getResultList();
+
+    return resultList;
+  }
+
 
 }

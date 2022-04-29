@@ -28,7 +28,7 @@ public class ReviewService {
   }
 
   public List<SimpleReviewDto> showPopularReviews(int size) {
-    List<Review> rawList = reviewJpqlRepository.findAllOrderByCreatedDateDesc(size);
+    List<Review> rawList = reviewJpqlRepository.findAllOrderByViewsDesc(size);
     List<SimpleReviewDto> result = new ArrayList<>();
 
     rawList.stream().forEach(
