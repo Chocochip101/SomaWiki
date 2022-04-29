@@ -26,4 +26,10 @@ public class UserService {
     return new LoginResponseDto(result.getIdx(), result.getName(), result.getEmail());
   }
 
+
+  @Transactional
+  public void changeUserPassword(PasswordRequestDto requestDto, String userName) {
+    User user = userRepository.findUserByName(userName);
+    user.updatePassword(requestDto.getPassword());
+  }
 }

@@ -21,11 +21,13 @@ public class CommentController {
 
         // Post
 
+        return null;
     }
 
     @ResponseBody
     @DeleteMapping("/reviews/{reviewIdx}/comments/{commentIdx}")
     public ResponseEntity<?> deleteComment(){
 
+        return null;
     }
 }

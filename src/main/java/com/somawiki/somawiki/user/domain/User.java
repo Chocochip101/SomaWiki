@@ -25,4 +25,7 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    public void updatePassword(String newPassword) {
+        this.password = newPassword;
+    }
 }

@@ -6,6 +6,7 @@ import com.somawiki.somawiki.user.dto.PasswordRequestDto;
 import com.somawiki.somawiki.user.exception.LoginException;
 import com.somawiki.somawiki.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -42,7 +43,8 @@ public class UserController {
 
   @Operation(summary = "비밀번호 변경")
   @PutMapping("/password")
-  public void changePassword(@RequestBody PasswordRequestDto requestDto) {
-    
+  public void changePassword(@RequestBody PasswordRequestDto requestDto,
+                             @Parameter(hidden = true) @SessionAttribute LoginResponseDto loginUser) {
+    userService.changeUserPassword(requestDto, loginUser.getName());
   }
 }
