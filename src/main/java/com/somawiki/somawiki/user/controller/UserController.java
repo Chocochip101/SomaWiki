@@ -2,16 +2,14 @@ package com.somawiki.somawiki.user.controller;
 
 import com.somawiki.somawiki.user.dto.LoginRequestDto;
 import com.somawiki.somawiki.user.dto.LoginResponseDto;
+import com.somawiki.somawiki.user.dto.PasswordRequestDto;
 import com.somawiki.somawiki.user.exception.LoginException;
 import com.somawiki.somawiki.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,5 +38,11 @@ public class UserController {
 
     HttpSession session = httpServletRequest.getSession();
     session.setAttribute("loginUser", responseDto);
+  }
+
+  @Operation(summary = "비밀번호 변경")
+  @PutMapping("/password")
+  public void changePassword(@RequestBody PasswordRequestDto requestDto) {
+    
   }
 }
