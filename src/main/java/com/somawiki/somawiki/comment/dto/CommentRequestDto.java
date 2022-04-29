@@ -4,13 +4,9 @@ import com.somawiki.somawiki.comment.domain.Comment;
 import com.somawiki.somawiki.review.domain.Review;
 import com.somawiki.somawiki.user.domain.User;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDateTime;
-
-@Data
-@Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentRequestDto {
