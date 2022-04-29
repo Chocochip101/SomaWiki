@@ -22,4 +22,11 @@ public class ReviewController {
     List<SimpleReviewDto> reviewDtoList = reviewService.showRecentReviews(5);
     return reviewDtoList;
   }
+
+  @Operation(summary = "인기 후기")
+  @GetMapping("/popular")
+  public List<SimpleReviewDto> getPopularReviews() {
+    List<SimpleReviewDto> reviewDtoList = reviewService.showRecentReviews(5);
+    return reviewDtoList;
+  }
 }

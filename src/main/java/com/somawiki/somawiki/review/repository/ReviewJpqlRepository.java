@@ -17,7 +17,7 @@ public class ReviewJpqlRepository {
    * @param size 출력할 item 개수
    * @return
    */
-  public List<Review> findAllDesc(int size) {
+  public List<Review> findAllOrderByCreatedDateDesc(int size) {
     String jpql = "select r from Review r " +
       "order by r.createdDate desc";
 
@@ -28,4 +28,6 @@ public class ReviewJpqlRepository {
 
     return resultList;
   }
+
+
 }
