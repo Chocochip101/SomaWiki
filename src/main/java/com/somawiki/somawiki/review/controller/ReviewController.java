@@ -9,6 +9,7 @@ import com.somawiki.somawiki.review.service.ReviewService;
 import com.somawiki.somawiki.user.dto.LoginResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "ReviewController", description = "후기 관련 API")
 @RequiredArgsConstructor
 @RestController
 public class ReviewController {

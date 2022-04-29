@@ -7,6 +7,7 @@ import com.somawiki.somawiki.user.exception.LoginException;
 import com.somawiki.somawiki.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+@Tag(name = "UserController", description = "사용자 관련 API")
 @RequiredArgsConstructor
 @RequestMapping("/users")
 @RestController
