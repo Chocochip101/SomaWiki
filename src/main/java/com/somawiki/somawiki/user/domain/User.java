@@ -1,10 +1,14 @@
 package com.somawiki.somawiki.user.domain;
 
+import com.somawiki.somawiki.comment.domain.Comment;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
+
 @NoArgsConstructor
 @Entity
 public class User {

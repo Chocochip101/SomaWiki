@@ -1,5 +1,7 @@
 package com.somawiki.somawiki.comment.domain;
 
+import com.somawiki.somawiki.comment.dto.CommentRequestDto;
+import com.somawiki.somawiki.comment.dto.CommentResponseDto;
 import com.somawiki.somawiki.review.domain.Review;
 import com.somawiki.somawiki.user.domain.User;
 import lombok.*;
@@ -11,6 +13,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Entity
