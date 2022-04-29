@@ -1,15 +1,17 @@
 package com.somawiki.somawiki.review.controller;
 
+import com.somawiki.somawiki.mentor.exception.WrongMentorException;
 import com.somawiki.somawiki.review.dto.ReviewDetailDto;
+import com.somawiki.somawiki.review.dto.ReviewRequestDto;
 import com.somawiki.somawiki.review.dto.SimpleReviewDto;
 import com.somawiki.somawiki.review.exception.WrongReviewException;
 import com.somawiki.somawiki.review.service.ReviewService;
+import com.somawiki.somawiki.user.dto.LoginResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,4 +46,18 @@ public class ReviewController {
 
     return  reviewDetailDto;
   }
+
+  @Operation(summary = "후기 작성")
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping
+  public void createNewReview(@RequestBody ReviewRequestDto requestDto,
+                              @Parameter(hidden = true) @SessionAttribute LoginResponseDto loginUser) throws WrongMentorException {
+    boolean isSucceed = reviewService.addNewReview(requestDto, loginUser);
+    if (!isSucceed) {
+      throw new WrongMentorException();
+
+    }
+  }
+
+
 }

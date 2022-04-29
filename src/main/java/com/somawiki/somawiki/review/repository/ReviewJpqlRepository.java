@@ -46,5 +46,8 @@ public class ReviewJpqlRepository {
     return resultList;
   }
 
+  public void save(Review review) {
+    em.persist(review);
+  }
 
 }

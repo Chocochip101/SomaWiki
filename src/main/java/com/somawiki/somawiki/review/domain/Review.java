@@ -2,22 +2,18 @@ package com.somawiki.somawiki.review.domain;
 
 import com.somawiki.somawiki.comment.domain.Comment;
 import com.somawiki.somawiki.mentor.domain.Mentor;
+import com.somawiki.somawiki.time.BaseTimeEntity;
 import com.somawiki.somawiki.user.domain.User;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Review {
+public class Review extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -39,13 +35,6 @@ public class Review {
     @Column(nullable = false)
     private Long views;
 
-    // 날짜
-    @CreatedDate
-    private LocalDateTime createdDate;
-
-    @LastModifiedDate
-    private LocalDateTime lastModifiedDate;
-
     // 후기 작성자
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "USER_ID", nullable = false)
@@ -60,4 +49,12 @@ public class Review {
     @OneToMany(mappedBy = "review", orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
+    public Review(String title, String link, String summary, long views, User user, Mentor mentor) {
+        this.title = title;
+        this.link = link;
+        this.summary = summary;
+        this.views = views;
+        this.user = user;
+        this.mentor = mentor;
+    }
 }

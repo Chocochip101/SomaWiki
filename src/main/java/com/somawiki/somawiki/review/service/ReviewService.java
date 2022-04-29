@@ -2,12 +2,17 @@ package com.somawiki.somawiki.review.service;
 
 import com.somawiki.somawiki.comment.domain.Comment;
 import com.somawiki.somawiki.comment.repository.CommentJpqlRepository;
+import com.somawiki.somawiki.mentor.domain.Mentor;
+import com.somawiki.somawiki.mentor.repository.MentorRepository;
 import com.somawiki.somawiki.review.domain.Review;
 import com.somawiki.somawiki.review.dto.ReviewDetailDto;
 import com.somawiki.somawiki.review.dto.ReviewRequestDto;
 import com.somawiki.somawiki.review.dto.SimpleReviewDto;
 import com.somawiki.somawiki.review.repository.ReviewJpqlRepository;
 import com.somawiki.somawiki.review.repository.ReviewRepository;
+import com.somawiki.somawiki.user.domain.User;
+import com.somawiki.somawiki.user.dto.LoginResponseDto;
+import com.somawiki.somawiki.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +27,8 @@ public class ReviewService {
   private final ReviewJpqlRepository reviewJpqlRepository;
   private final ReviewRepository reviewRepository;
   private final CommentJpqlRepository commentJpqlRepository;
+  private final UserRepository userRepository;
+  private final MentorRepository mentorRepository;
 
   @Transactional
   public List<SimpleReviewDto> showRecentReviews(int size) {
@@ -67,6 +74,22 @@ public class ReviewService {
     reviewDetailDto.updateCommentsWithEntity(commentList);
 
     return reviewDetailDto;
+  }
+
+  @Transactional
+  public boolean addNewReview(ReviewRequestDto requestDto, LoginResponseDto loginUser) {
+    User user = userRepository.findByIdx(loginUser.getIdx());
+    Mentor mentor = mentorRepository.findByIdx(requestDto.getMentor());
+
+    if (mentor == null) {
+      return false;
+    }
+
+    Review review = new Review(requestDto.getTitle(), requestDto.getLink(),
+                              requestDto.getSummary(), 0, user, mentor);
+    reviewJpqlRepository.save(review);
+
+    return true;
   }
 
 }
