@@ -26,12 +26,15 @@ public class CommentController {
     public void saveComment(@PathVariable Long reviewIdx,
                             @Validated @RequestBody CommentRequestDto commentRequestDto,
                             BindingResult result,
-                            @Parameter(hidden = true) @SessionAttribute LoginResponseDto loginUser) throws Exception {
-        if (result.hasErrors()) {
-            throw new Exception("올바른 값을 입력하세요.");
-        }
-
+                            @Parameter(hidden = true) @SessionAttribute LoginResponseDto loginUser) {
+        validateBindingResult(result);
         commentService.saveComment(loginUser.getIdx(), reviewIdx, commentRequestDto);
+    }
+
+    private void validateBindingResult(BindingResult result) {
+        if (result.hasErrors()) {
+            throw new RuntimeException("올바른 값을 입력하세요.");
+        }
     }
 
     @Operation(summary = "댓글 삭제")

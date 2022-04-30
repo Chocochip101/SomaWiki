@@ -37,4 +37,7 @@ public class Comment extends BaseTimeEntity {
         this.review = review;
     }
 
+    public boolean isWrittenBy(Long userIdx) {
+        return user.getIdx().equals(userIdx);
+    }
 }
