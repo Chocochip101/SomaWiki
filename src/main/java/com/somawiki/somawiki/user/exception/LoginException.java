@@ -1,6 +1,6 @@
 package com.somawiki.somawiki.user.exception;
 
-public class LoginException extends Exception {
+public class LoginException extends RuntimeException {
   public LoginException() {
     super("로그인 정보가 틀렸습니다.");
   }

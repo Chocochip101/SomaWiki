@@ -28,17 +28,11 @@ public class UserController {
   public void login(HttpServletRequest httpServletRequest,
                     @Validated @RequestBody LoginRequestDto requestDto,
                     BindingResult result) throws LoginException {
-
     if (result.hasErrors()) {
       throw new LoginException("올바른 값을 입력하세요.");
     }
 
     LoginResponseDto responseDto = userService.login(requestDto);
-
-    if (responseDto == null) {
-      throw new LoginException();
-    }
-
     HttpSession session = httpServletRequest.getSession();
     session.setAttribute("loginUser", responseDto);
   }
