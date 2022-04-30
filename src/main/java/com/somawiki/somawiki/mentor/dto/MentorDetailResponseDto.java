@@ -2,7 +2,6 @@ package com.somawiki.somawiki.mentor.dto;
 
 import com.somawiki.somawiki.review.domain.Review;
 import com.somawiki.somawiki.review.dto.SimpleReviewDto;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

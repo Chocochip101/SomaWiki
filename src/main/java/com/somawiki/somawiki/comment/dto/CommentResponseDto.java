@@ -1,7 +1,10 @@
 package com.somawiki.somawiki.comment.dto;
 
 import com.somawiki.somawiki.comment.domain.Comment;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter

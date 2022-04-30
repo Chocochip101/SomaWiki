@@ -1,7 +1,8 @@
 package com.somawiki.somawiki.mentor.domain;
 
 import com.somawiki.somawiki.review.domain.Review;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;

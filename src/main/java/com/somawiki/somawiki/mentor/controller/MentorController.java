@@ -1,7 +1,6 @@
 package com.somawiki.somawiki.mentor.controller;
 
 import com.somawiki.somawiki.mentor.dto.MentorDetailResponseDto;
-import com.somawiki.somawiki.mentor.exception.WrongMentorException;
 import com.somawiki.somawiki.mentor.service.MentorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

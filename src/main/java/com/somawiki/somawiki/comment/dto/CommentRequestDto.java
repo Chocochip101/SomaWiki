@@ -1,9 +1,9 @@
 package com.somawiki.somawiki.comment.dto;
 
-import com.somawiki.somawiki.comment.domain.Comment;
-import com.somawiki.somawiki.review.domain.Review;
-import com.somawiki.somawiki.user.domain.User;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 

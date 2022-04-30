@@ -1,10 +1,11 @@
 package com.somawiki.somawiki.review.domain;
 
+import com.somawiki.somawiki.BaseTimeEntity;
 import com.somawiki.somawiki.comment.domain.Comment;
 import com.somawiki.somawiki.mentor.domain.Mentor;
-import com.somawiki.somawiki.BaseTimeEntity;
 import com.somawiki.somawiki.user.domain.User;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;

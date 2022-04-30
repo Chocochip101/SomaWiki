@@ -1,6 +1,5 @@
 package com.somawiki.somawiki.exception;
 
-import com.somawiki.somawiki.exception.ErrorResponse;
 import com.somawiki.somawiki.mentor.exception.WrongMentorException;
 import com.somawiki.somawiki.review.exception.WrongReviewException;
 import com.somawiki.somawiki.user.exception.LoginException;

@@ -1,6 +1,5 @@
 package com.somawiki.somawiki.review.controller;
 
-import com.somawiki.somawiki.mentor.exception.WrongMentorException;
 import com.somawiki.somawiki.review.dto.ReviewDetailDto;
 import com.somawiki.somawiki.review.dto.ReviewRequestDto;
 import com.somawiki.somawiki.review.dto.SimpleReviewDto;
