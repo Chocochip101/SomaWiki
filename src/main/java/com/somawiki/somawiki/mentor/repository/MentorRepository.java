@@ -10,4 +10,5 @@ public interface MentorRepository extends JpaRepository<Mentor, Long> {
     Mentor findByName(String name);
     Mentor findByIdx(Long idx);
     Page<Mentor> findAll(Pageable pageable);
+    boolean existsByName(String name);
 }

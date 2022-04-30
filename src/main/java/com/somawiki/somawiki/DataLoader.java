@@ -1,11 +1,9 @@
 package com.somawiki.somawiki;
 
-import com.somawiki.somawiki.comment.domain.Comment;
-import com.somawiki.somawiki.comment.repository.CommentRepository;
+import com.somawiki.somawiki.data.MentorData;
+import com.somawiki.somawiki.data.StudentData;
 import com.somawiki.somawiki.mentor.domain.Mentor;
 import com.somawiki.somawiki.mentor.repository.MentorRepository;
-import com.somawiki.somawiki.review.domain.Review;
-import com.somawiki.somawiki.review.repository.ReviewRepository;
 import com.somawiki.somawiki.user.domain.User;
 import com.somawiki.somawiki.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +12,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-
 @Transactional
 @Component
 @RequiredArgsConstructor
@@ -23,9 +19,8 @@ public class DataLoader implements ApplicationRunner {
 
     private final UserRepository userRepository;
     private final MentorRepository mentorRepository;
-    private final ReviewRepository reviewRepository;
-    private final CommentRepository commentRepository;
 
+    /*
     @Override
     public void run(ApplicationArguments args) {
         User user1 = new User("유저1", "1111", "user1@naver.com");
@@ -70,5 +65,33 @@ public class DataLoader implements ApplicationRunner {
         Comment comment9 = new Comment("댓글9: 유저6-리뷰12", user6, review12);
         Comment comment10 = new Comment("댓글10: 유저6-리뷰13", user6, review13);
         commentRepository.saveAll(Arrays.asList(comment1, comment2, comment3, comment4, comment5, comment6, comment7, comment8, comment9, comment10));
+    }
+     */
+
+    @Override
+    public void run(ApplicationArguments args) {
+        int duplicate = 2;
+
+        String[] students = StudentData.students.split(",");
+        for (String student : students) {
+            String name = student;
+            while (userRepository.existsByName(name)) {
+                name += Integer.toString(duplicate);
+                duplicate++;
+            }
+            userRepository.save(new User(name, "1111", ""));
+            duplicate = 2;
+        }
+
+        String[] mentors = MentorData.mentors.split(",");
+        for(String mentor: mentors) {
+            String name = mentor;
+            while(mentorRepository.existsByName(name)) {
+                name += Integer.toString(duplicate);
+                duplicate++;
+            }
+            mentorRepository.save(new Mentor(name));
+            duplicate = 2;
+        }
     }
 }
