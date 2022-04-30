@@ -20,6 +20,10 @@ public class Mentor {
     @Column(nullable = false)
     private String name;
 
+    public Mentor(String name) {
+        this.name = name;
+    }
+
     // 후기
     @OneToMany(mappedBy = "mentor")
     private List<Review> reviews = new ArrayList<>();

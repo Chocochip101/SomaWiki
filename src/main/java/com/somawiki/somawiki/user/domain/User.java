@@ -1,17 +1,15 @@
 package com.somawiki.somawiki.user.domain;
 
-import com.somawiki.somawiki.comment.domain.Comment;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
-
 @NoArgsConstructor
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -28,6 +26,12 @@ public class User {
     // 이메일
     @Column(nullable = false)
     private String email;
+
+    public User(String name, String password, String email) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+    }
 
     public void updatePassword(String newPassword) {
         this.password = newPassword;

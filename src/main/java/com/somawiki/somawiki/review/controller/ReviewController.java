@@ -47,8 +47,7 @@ public class ReviewController {
   @PostMapping("/reviews")
   public void createNewReview(@Validated @RequestBody ReviewRequestDto requestDto,
                               BindingResult bindingResult,
-                              @Parameter(hidden = true) @SessionAttribute LoginResponseDto loginUser) throws Exception {
-
+                              @Parameter(hidden = true) @SessionAttribute LoginResponseDto loginUser) {
     validateBindingResult(bindingResult);
     reviewService.addNewReview(requestDto, loginUser);
   }
@@ -57,7 +56,7 @@ public class ReviewController {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @DeleteMapping("/reviews/{reviewId}")
   public void deleteReview(@PathVariable long reviewId,
-                           @Parameter(hidden = true) @SessionAttribute LoginResponseDto loginUser) throws Exception {
+                           @Parameter(hidden = true) @SessionAttribute LoginResponseDto loginUser) {
     reviewService.deleteReview(reviewId, loginUser);
   }
 
