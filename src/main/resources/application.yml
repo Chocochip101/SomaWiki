@@ -39,6 +39,8 @@ logging:
     hibernate: info
 server:
   forward-headers-strategy: framework
+swagger-docs:
+  url: http://localhost:8080
 ---
 spring:
   config:
@@ -47,3 +49,9 @@ spring:
 logging:
   file:
     path: /home/ubuntu/soma-wiki-project
+swagger-docs:
+  url: https://soma-wiki.kro.kr
+---
+springdoc:
+  swagger-ui:
+    path: index.html
