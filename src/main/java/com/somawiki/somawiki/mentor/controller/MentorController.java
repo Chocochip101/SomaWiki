@@ -20,13 +20,7 @@ public class MentorController {
 
   @Operation(summary = "멘토 디테일")
   @GetMapping("/{mentorIdx}")
-  public MentorDetailResponseDto detailsOfMentor(@PathVariable long mentorIdx) throws WrongMentorException {
-    MentorDetailResponseDto result = mentorService.showDetailsOfMentor(mentorIdx);
-
-    if (result == null) {
-      throw new WrongMentorException();
-    }
-
-    return result;
+  public MentorDetailResponseDto detailsOfMentor(@PathVariable long mentorIdx) {
+    return mentorService.showDetailsOfMentor(mentorIdx);
   }
 }
