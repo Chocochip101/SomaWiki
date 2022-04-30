@@ -25,7 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addMapping("/**")
             .allowCredentials(true)
             .allowedMethods("*")
-            .allowedHeaders("Set-Cookie")
+            .allowedHeaders("*")
             .allowedOrigins("http://localhost:8080", "http://localhost:8081", "https://soma-wiki.vercel.app");
   }
 }
