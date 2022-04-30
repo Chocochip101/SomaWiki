@@ -26,6 +26,6 @@ public class WebConfig implements WebMvcConfigurer {
             .allowCredentials(true)
             .allowedMethods("*")
             .allowedHeaders("*")
-            .allowedOrigins("http://localhost:8080", "http://localhost:8081", "https://soma-wiki.vercel.app");
+            .allowedOrigins("http://localhost:3000", "http://localhost:8080", "https://soma-wiki.vercel.app");
   }
 }
