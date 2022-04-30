@@ -57,4 +57,8 @@ public class Review extends BaseTimeEntity {
         this.user = user;
         this.mentor = mentor;
     }
+
+    public boolean isWrittenBy(Long userIdx) {
+        return userIdx.equals(user.getIdx());
+    }
 }
