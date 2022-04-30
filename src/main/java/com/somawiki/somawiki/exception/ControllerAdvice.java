@@ -3,6 +3,7 @@ package com.somawiki.somawiki.exception;
 import com.somawiki.somawiki.mentor.exception.WrongMentorException;
 import com.somawiki.somawiki.review.exception.WrongReviewException;
 import com.somawiki.somawiki.user.exception.LoginException;
+import com.somawiki.somawiki.user.exception.NotLoggedInException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +20,13 @@ public class ControllerAdvice {
   public ErrorResponse failToLoginHandle(LoginException e) {
     log.info(e.getMessage());
     return new ErrorResponse(HttpStatus.UNAUTHORIZED, e.getMessage());
+  }
+
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  @ExceptionHandler(NotLoggedInException.class)
+  public ErrorResponse notLoggedIn(NotLoggedInException e) {
+    log.info(e.getMessage());
+    return new ErrorResponse(HttpStatus.NOT_FOUND, e.getMessage());
   }
 
   @ResponseStatus(HttpStatus.BAD_REQUEST)

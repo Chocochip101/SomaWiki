@@ -5,6 +5,7 @@ import com.somawiki.somawiki.user.dto.LoginRequestDto;
 import com.somawiki.somawiki.user.dto.LoginResponseDto;
 import com.somawiki.somawiki.user.dto.PasswordRequestDto;
 import com.somawiki.somawiki.user.exception.LoginException;
+import com.somawiki.somawiki.user.exception.NotLoggedInException;
 import com.somawiki.somawiki.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,12 @@ public class UserService {
   public void changeUserPassword(PasswordRequestDto requestDto, String userName) {
     User user = userRepository.findUserByName(userName);
     user.updatePassword(requestDto.getPassword());
+  }
+
+  public LoginResponseDto checkLoggedIn(LoginResponseDto loginUser) {
+    if (Objects.isNull(loginUser)) {
+      throw new NotLoggedInException("로그인이 필요합니다.");
+    }
+    return loginUser;
   }
 }
