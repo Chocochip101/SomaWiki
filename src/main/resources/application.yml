@@ -55,3 +55,10 @@ swagger-docs:
 springdoc:
   swagger-ui:
     path: index.html
+server:
+  servlet:
+    session:
+      cookie:
+        domain: soma-wiki.vercel.app
+        http-only: true
+        path: /
