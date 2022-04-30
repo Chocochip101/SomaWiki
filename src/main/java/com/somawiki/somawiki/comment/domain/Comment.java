@@ -1,17 +1,11 @@
 package com.somawiki.somawiki.comment.domain;
 
-import com.somawiki.somawiki.comment.dto.CommentRequestDto;
-import com.somawiki.somawiki.comment.dto.CommentResponseDto;
 import com.somawiki.somawiki.review.domain.Review;
-import com.somawiki.somawiki.time.BaseTimeEntity;
+import com.somawiki.somawiki.BaseTimeEntity;
 import com.somawiki.somawiki.user.domain.User;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor

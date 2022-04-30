@@ -1,4 +1,4 @@
-package com.somawiki.somawiki.time;
+package com.somawiki.somawiki;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

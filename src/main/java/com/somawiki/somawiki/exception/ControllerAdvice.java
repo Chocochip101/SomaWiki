@@ -1,4 +1,4 @@
-package com.somawiki.somawiki;
+package com.somawiki.somawiki.exception;
 
 import com.somawiki.somawiki.exception.ErrorResponse;
 import com.somawiki.somawiki.mentor.exception.WrongMentorException;
