@@ -1,4 +1,4 @@
-package com.somawiki.somawiki.interceptor;
+package com.somawiki.somawiki.config;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -13,9 +13,10 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     String method = request.getMethod();
-    if ("GET".equalsIgnoreCase(method)) {
+    if ("GET".equalsIgnoreCase(method) || "OPTIONS".equalsIgnoreCase(method)) {
       return true;
     }
+
     HttpSession session = request.getSession(false);
     if (Objects.isNull(session) || Objects.isNull(session.getAttribute("loginUser"))) {
       response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "로그인이 필요합니다.");
